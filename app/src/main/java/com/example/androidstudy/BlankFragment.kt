@@ -1,11 +1,10 @@
 package com.example.androidstudy
 
-import android.icu.text.Transliterator.Position
+import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
-import kotlin.math.sqrt
+
 
 class BlankFragment : Fragment() {
-
 
 }
 
