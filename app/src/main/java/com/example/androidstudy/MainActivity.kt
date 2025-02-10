@@ -18,14 +18,6 @@ class MainActivity : AppCompatActivity()
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
 
-        val buttonToChangeActivity = findViewById<Button>(R.id.btnGoToSecondActivity)
-
-        buttonToChangeActivity.setOnClickListener{
-            val intent = Intent(this,AnotherActivity::class.java)
-            startActivity(intent)
-        }
-
-
     }
 
 
