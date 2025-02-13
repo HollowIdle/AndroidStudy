@@ -2,11 +2,9 @@ package com.example.testproject
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.example.androidstudy.R
 import com.example.testproject.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -15,12 +13,13 @@ class MainActivity : AppCompatActivity() {
 
     private val libManager = LibraryManagerC()
 
+
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
-
-        val addBookButton = findViewById<Button>(R.id.AddBookButton)
+        setContentView(binding.root)
+        val addBookButton = binding.AddBookButton
         addBookButton.setOnClickListener{ createBookInfoFromFields() }
 
         displayList()
