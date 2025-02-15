@@ -9,20 +9,18 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import androidx.core.widget.addTextChangedListener
+import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentContainerView
 
-
 class LoginFragment : Fragment() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+    //todo use binding instead findViewById
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         Log.d("Fragment Life Cycle Test","Fragment view created")
-        val fragmentContainer = view.findViewById<FragmentContainerView>(R.id.fragmentContainer)
+        val fragmentContainer = view.findViewById<FragmentContainerView>(R.id.fragmentContainer) //todo remove
 
         val loginButton = view.findViewById<Button>(R.id.loginButton)
         val loginTextField = view.findViewById<EditText>(R.id.loginField)
@@ -30,7 +28,7 @@ class LoginFragment : Fragment() {
 
         loginButton.isEnabled = false
 
-        passwordTextField.addTextChangedListener(){
+        passwordTextField.addTextChangedListener{ //todo try to replace doOnTextChanged
             loginButton.isEnabled = passwordTextField.text.length >= 8
         }
 
@@ -91,12 +89,4 @@ class LoginFragment : Fragment() {
         Log.d("Fragment Life Cycle Test","Fragment detached")
     }
 
-    companion object {
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            LoginFragment().apply {
-                arguments = Bundle().apply {
-                }
-            }
-    }
 }
