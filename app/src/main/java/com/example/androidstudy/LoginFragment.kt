@@ -6,35 +6,31 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-import androidx.core.widget.addTextChangedListener
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentContainerView
+import com.example.androidstudy.databinding.FragmentLoginBinding
 
 class LoginFragment : Fragment() {
 
-    //todo use binding instead findViewById
+    private lateinit var binding : FragmentLoginBinding
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         Log.d("Fragment Life Cycle Test","Fragment view created")
-        val fragmentContainer = view.findViewById<FragmentContainerView>(R.id.fragmentContainer) //todo remove
 
-        val loginButton = view.findViewById<Button>(R.id.loginButton)
-        val loginTextField = view.findViewById<EditText>(R.id.loginField)
-        val passwordTextField = view.findViewById<EditText>(R.id.passwordField)
+        val loginButton = binding.loginButton
+        val loginField = binding.loginField
+        val passwordField = binding.passwordField
 
         loginButton.isEnabled = false
 
-        passwordTextField.addTextChangedListener{ //todo try to replace doOnTextChanged
-            loginButton.isEnabled = passwordTextField.text.length >= 8
+        passwordField.doOnTextChanged { text, start, before, count ->
+            loginButton.isEnabled = (text?.length ?: 0) >= 8
         }
 
         loginButton.setOnClickListener(){
             parentFragmentManager.beginTransaction()
-                .replace(R.id.fragmentContainer,SecondFragment())
+                .replace(R.id.fragment_сontainer,SecondFragment())
                 .addToBackStack(null)
                 .commit()
         }
@@ -46,7 +42,8 @@ class LoginFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         Log.d("Fragment Life Cycle Test","Fragment CreateView")
-        return inflater.inflate(R.layout.fragment_login, container, false)
+        binding = FragmentLoginBinding.inflate(layoutInflater)
+        return binding.root
     }
 
     override fun onAttach(context: Context) {
