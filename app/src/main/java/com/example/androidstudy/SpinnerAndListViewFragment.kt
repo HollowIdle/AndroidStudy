@@ -10,7 +10,7 @@ import com.example.androidstudy.databinding.FragmentSpinnerAndListViewBinding
 
 class SpinnerAndListViewFragment : Fragment(R.layout.fragment_spinner_and_list_view) {
 
-    lateinit var binding: FragmentSpinnerAndListViewBinding
+    lateinit var binding: FragmentSpinnerAndListViewBinding // todo private
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -18,6 +18,8 @@ class SpinnerAndListViewFragment : Fragment(R.layout.fragment_spinner_and_list_v
         initializeSpinner()
         initializeListView()
 
+        //todo желательно также вынести это в отдельный метод.
+        // onViewCreated должен только инициализировать, а не выполнять логику
         val nextPageButton = binding.nextPageButton
 
         nextPageButton.setOnClickListener{
@@ -26,10 +28,9 @@ class SpinnerAndListViewFragment : Fragment(R.layout.fragment_spinner_and_list_v
                 .addToBackStack(null)
                 .commit()
         }
-
     }
 
-    fun initializeSpinner(){
+    fun initializeSpinner(){ // todo private
         val spinner = binding.spinner
 
         this.context?.let {
@@ -41,7 +42,7 @@ class SpinnerAndListViewFragment : Fragment(R.layout.fragment_spinner_and_list_v
         }
     }
 
-    fun initializeListView(){
+    fun initializeListView(){ // todo private
         val listView = binding.listView
 
         val listAdapter = ArrayAdapter(requireContext(),
