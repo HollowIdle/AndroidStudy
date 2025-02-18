@@ -10,4 +10,9 @@
     <string name="invalid_password">Password must be >8 characters</string>
     <string name="login_failed">"Login failed"</string>
     <string name="login_fragment_top_text">"Login Fragment"</string>
+    <string-array name="tech_companies_list">
+        <item>Intel</item>
+        <item>NVIDIA</item>
+        <item>AMD</item>
+    </string-array>
 </resources>
