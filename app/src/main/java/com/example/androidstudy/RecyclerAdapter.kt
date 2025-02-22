@@ -12,21 +12,20 @@ import androidx.recyclerview.widget.RecyclerView
 class RecyclerAdapter() : ListAdapter<Item,RecyclerAdapter.ItemViewHolder>(ItemDiffCallBack()) {
 
     class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
-        val topTextView : TextView = itemView.findViewById(R.id.text_recycler1)
-        val bottomTextView : TextView = itemView.findViewById(R.id.text_recycler2)
-        val imageview : ImageView = itemView.findViewById(R.id.image_recycler)
+        val topTextView : TextView = itemView.findViewById(R.id.title_text)
+        val bottomTextView : TextView = itemView.findViewById(R.id.description_text)
+        val imageview : ImageView = itemView.findViewById(R.id.news_image)
 
         fun bind(item: Item) {
             topTextView.text = item.title
             bottomTextView.text = item.description
-            imageview.setImageBitmap(item.image)
+            imageview.setImageResource(item.imageRes)
         }
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.recycler_item,parent,false)
+            .inflate(R.layout.news_item,parent,false)
         return ItemViewHolder(view)
     }
 

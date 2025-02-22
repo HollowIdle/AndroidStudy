@@ -23,18 +23,11 @@ class LoginFragment : Fragment() {
 
         passwordField.doOnTextChanged { text, start, before, count ->
             loginButton.isEnabled = (text?.length ?: 0) >= 8
-            //хорошо, что прислушался к использованию doOnTextChanged.
-            //Постарайся почитать про inline fun, очень полезная штука для оптимизации кода.
-            //Вот как выглядит метод doOnTextChanged:
-//            public inline fun TextView.doOnTextChanged(
-//                crossinline action: (text: CharSequence?, start: Int, before: Int, count: Int) -> Unit
-//            ): TextWatcher
-            //Если не поймёшь - я объясню в следующий раз
         }
 
         loginButton.setOnClickListener(){
             parentFragmentManager.beginTransaction()
-                .replace(R.id.fragment_сontainer,SpinnerAndListViewFragment())
+                .replace(R.id.fragment_сontainer,NewsFragment())
                 .addToBackStack(null)
                 .commit()
         }

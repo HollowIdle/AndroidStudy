@@ -6,9 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".LoginFragment">
 
-    <!--    todo rename ids-->
-    <!--    todo remove Horizontal_bias do margin instead-->
-    <!--    todo replace hardcode width | height-->
     <TextView
         android:id="@+id/text_view"
         android:layout_width="wrap_content"
