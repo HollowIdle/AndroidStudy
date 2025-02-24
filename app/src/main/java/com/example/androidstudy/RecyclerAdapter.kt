@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -12,14 +13,15 @@ import androidx.recyclerview.widget.RecyclerView
 class RecyclerAdapter() : ListAdapter<Item,RecyclerAdapter.ItemViewHolder>(ItemDiffCallBack()) {
 
     class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
-        val topTextView : TextView = itemView.findViewById(R.id.title_text)
-        val bottomTextView : TextView = itemView.findViewById(R.id.description_text)
+        val topTextView : TextView = itemView.findViewById(R.id.news_info_title_text)
+        val bottomTextView : TextView = itemView.findViewById(R.id.news_info_description_text)
         val imageview : ImageView = itemView.findViewById(R.id.news_image)
 
         fun bind(item: Item) {
             topTextView.text = item.title
             bottomTextView.text = item.description
             imageview.setImageResource(item.imageRes)
+
         }
     }
 
@@ -31,6 +33,17 @@ class RecyclerAdapter() : ListAdapter<Item,RecyclerAdapter.ItemViewHolder>(ItemD
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         holder.bind(getItem(position))
+        holder.itemView.setOnClickListener{
+        val context = it.context
+            if(context is AppCompatActivity){
+                val item = getItem(position)
+                val newsInfoFragment = NewsInfoFragment.newInstance(title = item.title, description = item.description, imageResId = item.imageRes)
+                context.supportFragmentManager.beginTransaction()
+                    .replace(R.id.fragment_сontainer, newsInfoFragment)
+                    .addToBackStack(null)
+                    .commit()
+            }
+        }
     }
 
 }
