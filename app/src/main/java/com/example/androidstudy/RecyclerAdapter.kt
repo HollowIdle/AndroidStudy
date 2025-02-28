@@ -5,14 +5,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 
-class RecyclerAdapter() : ListAdapter<Item,RecyclerAdapter.ItemViewHolder>(ItemDiffCallBack()) {
+class RecyclerAdapter(private val onItemClick: (Item) -> Unit) : ListAdapter<Item,RecyclerAdapter.ItemViewHolder>(ItemDiffCallBack()) {
 
-    class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+    class ItemViewHolder(itemView: View, private val onItemClick: (Item) -> Unit) : RecyclerView.ViewHolder(itemView){
         val topTextView : TextView = itemView.findViewById(R.id.news_info_title_text)
         val bottomTextView : TextView = itemView.findViewById(R.id.news_info_description_text)
         val imageview : ImageView = itemView.findViewById(R.id.news_image)
@@ -21,28 +20,23 @@ class RecyclerAdapter() : ListAdapter<Item,RecyclerAdapter.ItemViewHolder>(ItemD
             topTextView.text = item.title
             bottomTextView.text = item.description
             imageview.setImageResource(item.imageRes)
-
+            itemView.setOnClickListener {
+                onItemClick(item)
+            }
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.news_item,parent,false)
-        return ItemViewHolder(view)
+        return ItemViewHolder(view, onItemClick)
     }
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         holder.bind(getItem(position))
         holder.itemView.setOnClickListener{
-        val context = it.context
-            if(context is AppCompatActivity){
-                val item = getItem(position)
-                val newsInfoFragment = NewsInfoFragment.newInstance(title = item.title, description = item.description, imageResId = item.imageRes)
-                context.supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragment_сontainer, newsInfoFragment)
-                    .addToBackStack(null)
-                    .commit()
-            }
+            val item = getItem(position)
+            onItemClick(item)
         }
     }
 

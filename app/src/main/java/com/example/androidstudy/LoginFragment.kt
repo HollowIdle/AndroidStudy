@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.androidstudy.databinding.FragmentLoginBinding
 
 class LoginFragment : Fragment() {
@@ -26,10 +27,7 @@ class LoginFragment : Fragment() {
         }
 
         loginButton.setOnClickListener(){
-            parentFragmentManager.beginTransaction()
-                .replace(R.id.fragment_сontainer,NewsFragment())
-                .addToBackStack(null)
-                .commit()
+            findNavController().navigate(R.id.action_loginFragment_to_newsFragment)
         }
 
     }

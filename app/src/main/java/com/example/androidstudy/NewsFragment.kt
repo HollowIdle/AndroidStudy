@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.androidstudy.databinding.FragmentNewsBinding
 
@@ -13,12 +14,23 @@ class NewsFragment : Fragment(R.layout.fragment_news) {
 
     private lateinit var binding: FragmentNewsBinding
 
-    private val adapter by lazy {RecyclerAdapter()}
+    private val adapter by lazy {RecyclerAdapter(::onItemClick)}
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initializeRecyclerView()
 
+    }
+
+    private fun onItemClick(item: Item){
+
+        findNavController().navigate(
+            NewsFragmentDirections.actionNewsFragmentToNewsInfoFragment(
+            item.title,
+            item.description,
+            item.imageRes
+            )
+        )
     }
 
     private fun initializeRecyclerView() {

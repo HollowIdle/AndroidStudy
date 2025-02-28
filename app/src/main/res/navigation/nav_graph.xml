@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/loginFragment">
+
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.androidstudy.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_newsFragment"
+            app:destination="@id/newsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/newsFragment"
+        android:name="com.example.androidstudy.NewsFragment"
+        android:label="fragment_news"
+        tools:layout="@layout/fragment_news" >
+
+        <action
+            android:id="@+id/action_newsFragment_to_newsInfoFragment"
+            app:destination="@id/newsInfoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/newsInfoFragment"
+        android:name="com.example.androidstudy.NewsInfoFragment"
+        android:label="fragment_news_info"
+        tools:layout="@layout/fragment_news_info" >
+        <argument
+            android:name="title"
+            app:argType="string"/>
+        <argument
+            android:name="description"
+            app:argType="string"/>
+        <argument
+            android:name="imageId"
+            app:argType="integer"/>
+        <action
+            android:id="@+id/action_newsInfoFragment_to_newsFragment"
+            app:destination="@id/newsFragment" />
+    </fragment>
+</navigation>

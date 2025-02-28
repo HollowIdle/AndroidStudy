@@ -9,12 +9,14 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment_сontainer"
-        android:name="com.example.androidstudy.LoginFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:navGraph="@navigation/nav_graph"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
