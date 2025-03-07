@@ -1,4 +1,4 @@
-package com.example.androidstudy
+package com.example.androidstudy.ui.presentation.fragments
 
 import android.content.Context
 import android.os.Bundle
@@ -8,13 +8,16 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.androidstudy.R
 import com.example.androidstudy.databinding.FragmentNewsBinding
+import com.example.androidstudy.ui.presentation.adapters.RecyclerAdapter
+import com.example.androidstudy.ui.presentation.models.Item
 
 class NewsFragment : Fragment(R.layout.fragment_news) {
 
     private lateinit var binding: FragmentNewsBinding
 
-    private val adapter by lazy {RecyclerAdapter(::onItemClick)}
+    private val adapter by lazy { RecyclerAdapter(::onItemClick) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -26,9 +29,9 @@ class NewsFragment : Fragment(R.layout.fragment_news) {
 
         findNavController().navigate(
             NewsFragmentDirections.actionNewsFragmentToNewsInfoFragment(
-            item.title,
-            item.description,
-            item.imageRes
+                item.title,
+                item.description,
+                item.imageRes
             )
         )
     }

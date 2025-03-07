@@ -1,4 +1,4 @@
-package com.example.androidstudy
+package com.example.androidstudy.ui.presentation.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -8,8 +8,12 @@ import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.androidstudy.R
+import com.example.androidstudy.ui.presentation.models.Item
 
-class RecyclerAdapter(private val onItemClick: (Item) -> Unit) : ListAdapter<Item,RecyclerAdapter.ItemViewHolder>(ItemDiffCallBack()) {
+class RecyclerAdapter(private val onItemClick: (Item) -> Unit) : ListAdapter<Item, RecyclerAdapter.ItemViewHolder>(
+    ItemDiffCallBack()
+) {
 
     class ItemViewHolder(itemView: View, private val onItemClick: (Item) -> Unit) : RecyclerView.ViewHolder(itemView){
         val topTextView : TextView = itemView.findViewById(R.id.news_info_title_text)

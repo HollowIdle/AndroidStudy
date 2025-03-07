@@ -1,4 +1,4 @@
-package com.example.androidstudy
+package com.example.androidstudy.ui.presentation.models
 
 import androidx.annotation.DrawableRes
 

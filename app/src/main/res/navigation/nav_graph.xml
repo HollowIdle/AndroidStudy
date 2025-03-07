@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.androidstudy.LoginFragment"
+        android:name="com.example.androidstudy.ui.presentation.fragments.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
@@ -17,7 +17,7 @@
     </fragment>
     <fragment
         android:id="@+id/newsFragment"
-        android:name="com.example.androidstudy.NewsFragment"
+        android:name="com.example.androidstudy.ui.presentation.fragments.NewsFragment"
         android:label="fragment_news"
         tools:layout="@layout/fragment_news" >
 
@@ -27,7 +27,7 @@
     </fragment>
     <fragment
         android:id="@+id/newsInfoFragment"
-        android:name="com.example.androidstudy.NewsInfoFragment"
+        android:name="com.example.androidstudy.ui.presentation.fragments.NewsInfoFragment"
         android:label="fragment_news_info"
         tools:layout="@layout/fragment_news_info" >
         <argument

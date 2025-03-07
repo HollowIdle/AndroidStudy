@@ -1,4 +1,4 @@
-package com.example.androidstudy
+package com.example.androidstudy.ui.presentation.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.example.androidstudy.R
 import com.example.androidstudy.databinding.FragmentLoginBinding
 
 class LoginFragment : Fragment() {

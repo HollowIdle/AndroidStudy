@@ -1,4 +1,4 @@
-package com.example.androidstudy
+package com.example.androidstudy.ui.presentation.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
