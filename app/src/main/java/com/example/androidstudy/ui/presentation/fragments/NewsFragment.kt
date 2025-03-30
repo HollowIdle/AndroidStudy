@@ -1,56 +1,64 @@
 package com.example.androidstudy.ui.presentation.fragments
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.example.androidstudy.R
 import com.example.androidstudy.databinding.FragmentNewsBinding
+import com.example.androidstudy.ui.domain.models.DomainPostList
 import com.example.androidstudy.ui.presentation.adapters.RecyclerAdapter
-import com.example.androidstudy.ui.presentation.models.Item
+import com.example.androidstudy.ui.presentation.view_models.NewsViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class NewsFragment : Fragment(R.layout.fragment_news) {
 
     private lateinit var binding: FragmentNewsBinding
 
-    private val adapter by lazy { RecyclerAdapter(::onItemClick) }
+    private val viewModel: NewsViewModel by viewModels()
+
+    private lateinit var adapter: RecyclerAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         initializeRecyclerView()
-
+        observeModel()
     }
 
-    private fun onItemClick(item: Item){
-
-        findNavController().navigate(
-            NewsFragmentDirections.actionNewsFragmentToNewsInfoFragment(
-                item.title,
-                item.description,
-                item.imageRes
-            )
-        )
-    }
 
     private fun initializeRecyclerView() {
+        val posts = viewModel.newsList.value ?: DomainPostList().posts
+
+        adapter = RecyclerAdapter(
+            items = posts,
+            onItemClick = {
+                findNavController().navigate(
+                    NewsFragmentDirections.actionNewsFragmentToNewsInfoFragment()
+                )
+            }
+        )
+
         binding.newsRecyclerView.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = this@NewsFragment.adapter
         }
-        adapter.submitList(listOfElements(requireContext()))
     }
 
-    private fun listOfElements(context : Context?) : List<Item>{
-        context ?: return emptyList()
-        return (0 .. 50).map { i ->
-            val imageId = if(i % 2 == 0) R.drawable.img else R.drawable.img_1
-            Item(i,"Item $i","Description $i", imageId)
-        }
+    private fun observeModel(){
+        viewModel.newsList.observe(viewLifecycleOwner, Observer { newPosts ->
+            adapter.submitList(newPosts)
+            Glide.with(this)
+        })
     }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

@@ -30,15 +30,7 @@
         android:name="com.example.androidstudy.ui.presentation.fragments.NewsInfoFragment"
         android:label="fragment_news_info"
         tools:layout="@layout/fragment_news_info" >
-        <argument
-            android:name="title"
-            app:argType="string"/>
-        <argument
-            android:name="description"
-            app:argType="string"/>
-        <argument
-            android:name="imageId"
-            app:argType="integer"/>
+
         <action
             android:id="@+id/action_newsInfoFragment_to_newsFragment"
             app:destination="@id/newsFragment" />

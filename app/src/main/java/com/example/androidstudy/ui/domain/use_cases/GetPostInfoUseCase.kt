@@ -1,8 +1,10 @@
 package com.example.androidstudy.ui.domain.use_cases
 
-import com.example.androidstudy.ui.data.remote.dto.toDomainPost
-import com.example.androidstudy.ui.data.repository.PostsRepositoryImpl
+import com.example.androidstudy.ui.domain.repositories.PostsRepository
+import javax.inject.Inject
 
-class GetPostInfoUseCase {
-    fun getPostInfo() = PostsRepositoryImpl().getPostInfo().toDomainPost()
+class GetPostInfoUseCase @Inject constructor(
+    private val postsRepository: PostsRepository
+) {
+    //fun getPostInfo() = postsRepository.getPostInfo().toDomainPost()
 }
