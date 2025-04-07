@@ -1,5 +1,6 @@
 package com.example.androidstudy.ui.data.remote.dto
 
+import com.example.androidstudy.ui.data.local.PostEntity
 import com.example.androidstudy.ui.domain.models.DomainPost
 import com.google.gson.annotations.SerializedName
 
@@ -30,3 +31,11 @@ fun PostDto.toDomainPost() =
         publishedAt = publishedAt
     )
 
+fun PostDto.toLocalPost() =
+    PostEntity(
+        title = title,
+        description = description,
+        url = url,
+        urlToImage = urlToImage,
+        publishedAt = publishedAt
+    )
