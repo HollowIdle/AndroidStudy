@@ -1,6 +1,7 @@
 package com.example.androidstudy.ui.di.module.repositories
 
 import com.example.androidstudy.ui.data.repository.PostsRepositoryImpl
+import com.example.androidstudy.ui.data.repository.local.PostsLocal
 import com.example.androidstudy.ui.data.repository.remote.PostsRemote
 import com.example.androidstudy.ui.domain.repositories.PostsRepository
 import dagger.Module
@@ -13,6 +14,12 @@ import dagger.hilt.components.SingletonComponent
 class RepositoryModule {
 
     @Provides
-    fun providePostsRepository(postsRemote: PostsRemote) : PostsRepository =
-        PostsRepositoryImpl(postsRemote = postsRemote)
+    fun providePostsRepository(
+        postsRemote: PostsRemote,
+        postsLocal: PostsLocal
+    ) : PostsRepository =
+        PostsRepositoryImpl(
+            postsRemote = postsRemote,
+            postsLocal=postsLocal
+        )
 }
