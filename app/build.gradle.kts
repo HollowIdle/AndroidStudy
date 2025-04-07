@@ -4,6 +4,8 @@ plugins {
     id("androidx.navigation.safeargs")
     id("com.google.dagger.hilt.android")
     id("kotlin-kapt")
+    id("com.google.gms.google-services")
+    id("com.google.firebase.crashlytics")
 }
 
 android {
@@ -68,18 +70,30 @@ dependencies {
     implementation("com.google.dagger:hilt-android:2.51.1")
     kapt("com.google.dagger:hilt-android-compiler:2.51.1")
 
-    //Retrofit
+    // Retrofit
     implementation ("com.squareup.retrofit2:retrofit:2.9.0")
     implementation ("com.squareup.okhttp3:logging-interceptor:4.10.0")
 
-    //OkHttp
+    // OkHttp
     implementation ("com.squareup.okhttp3:okhttp:4.10.0")
     implementation ("com.squareup.okio:okio:3.0.0")
 
-    //Gson
+    // Gson
     implementation ("com.google.code.gson:gson:2.10.1")
     implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
-    //Glide
+
+    // Glide
     implementation ("com.github.bumptech.glide:glide:4.14.2")
     annotationProcessor("com.github.bumptech.glide:compiler:4.14.2")
+
+    // Firebase
+    implementation(platform("com.google.firebase:firebase-bom:33.1.1"))
+    implementation ("com.google.firebase:firebase-analytics-ktx")
+    implementation ("com.google.firebase:firebase-crashlytics-ktx")
+
+    //Room
+    implementation ("androidx.room:room-runtime:2.3.0")
+    implementation ("androidx.room:room-ktx:2.3.0")
+    kapt ("androidx.room:room-compiler:2.3.0")
+
 }
